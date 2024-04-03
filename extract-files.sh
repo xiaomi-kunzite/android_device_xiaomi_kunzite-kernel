@@ -149,9 +149,13 @@ for DTBO_PANEL_PATCH in "${DTBO_PANEL_PATCHES[@]}"; do
     find "${extract_out}/dtbo" -type f -name "*${device}*.dtb" -exec grep -q "${panel}" {} \; \
         -exec bash -c '
             dt_node="$(fdtget -t s "{}" /__symbols__ "'${panel}'")";
+            panel_height="$(fdtget -t i "{}" $dt_node "qcom,mdss-pan-physical-height-dimension")";
+            panel_width="$(fdtget -t i "{}" $dt_node "qcom,mdss-pan-physical-width-dimension")";
+            fdtput -t li "{}" "$dt_node" qcom,mdss-pan-physical-height-dimension "$((panel_height / 10))";
+            fdtput -t li "{}" "$dt_node" qcom,mdss-pan-physical-width-dimension "$((panel_width / 10))";
             fdtput -t i "{}" "$dt_node" qcom,dsi-supported-dfps-list 120 90 60;
         ' \; \
-        -exec printf "    + Fixed up removed 30hz of ${panel} in dtbo/" \; \
+        -exec printf "    + Fixed up removed 30hz and up panel dimensions of ${panel} in dtbo/" \; \
         -exec basename {} \;
 done
 mkdtboimg \
