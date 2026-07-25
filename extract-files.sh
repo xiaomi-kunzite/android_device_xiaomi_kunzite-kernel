@@ -117,6 +117,24 @@ for module in $(find $out/lib -name "*.ko" -o -name "modules.load*" -o -name "mo
 	cp $module ./modules/vendor_dlkm/
 done
 
+# Copy touch modules to vendor_boot so recovery can load them
+echo "Copying recovery touch modules to vendor_boot"
+RECOVERY_MODULES=(
+    lct_tp
+    gt9916k_spi
+    ft3683g_spi
+    xiaomi_tp
+)
+for module in "${RECOVERY_MODULES[@]}"; do
+    cp "./modules/vendor_dlkm/${module}.ko" "./modules/vendor_boot/"
+done
+
+echo "Updating modules.load.recovery"
+for module in "${RECOVERY_MODULES[@]}"; do
+    grep -qx "${module}.ko" ./modules/vendor_boot/modules.load.recovery || \
+        echo "${module}.ko" >> ./modules/vendor_boot/modules.load.recovery
+done
+
 # SYSTEM_DLKM
 echo "Extracting the dlkm kernel modules"
 out=$extract_out/system_dlkm
