@@ -117,13 +117,19 @@ for module in $(find $out/lib -name "*.ko" -o -name "modules.load*" -o -name "mo
 	cp $module ./modules/vendor_dlkm/
 done
 
-# Copy touch modules to vendor_boot so recovery can load them
+# Copy modules to vendor_boot so recovery can load them
 echo "Copying recovery touch modules to vendor_boot"
 RECOVERY_MODULES=(
     lct_tp
     gt9916k_spi
     ft3683g_spi
     xiaomi_tp
+    spf_core_dlkm
+    gpr_dlkm
+    snd_event_dlkm
+    q6_notifier_dlkm
+    q6_pdr_dlkm
+    adsp_loader_dlkm
 )
 for module in "${RECOVERY_MODULES[@]}"; do
     cp "./modules/vendor_dlkm/${module}.ko" "./modules/vendor_boot/"
