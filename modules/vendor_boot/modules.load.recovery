@@ -58,6 +58,7 @@ qcom-spmi-pmic.ko
 tms_device_modules.ko
 qcom_dma_heaps.ko
 spmi-pmic-arb.ko
+qpnp-power-on.ko
 xiaomi_fp.ko
 rtc-pm8xxx.ko
 qcom-dload-mode.ko
@@ -190,7 +191,6 @@ usb_f_qdss.ko
 usb_f_gsi.ko
 ucsi_qti_glink.ko
 pm8941-pwrkey.ko
-qpnp-power-on.ko
 i2c-msm-geni.ko
 qcom-pon.ko
 reboot-mode.ko

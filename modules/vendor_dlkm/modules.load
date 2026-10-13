@@ -91,7 +91,6 @@ usb_f_qdss.ko
 usb_f_gsi.ko
 ucsi_qti_glink.ko
 pm8941-pwrkey.ko
-qpnp-power-on.ko
 i2c-msm-geni.ko
 qcom-pon.ko
 reboot-mode.ko

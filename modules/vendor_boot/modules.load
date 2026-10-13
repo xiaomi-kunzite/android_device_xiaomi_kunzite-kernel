@@ -58,6 +58,7 @@ qcom-spmi-pmic.ko
 tms_device_modules.ko
 qcom_dma_heaps.ko
 spmi-pmic-arb.ko
+qpnp-power-on.ko
 xiaomi_fp.ko
 rtc-pm8xxx.ko
 qcom-dload-mode.ko
